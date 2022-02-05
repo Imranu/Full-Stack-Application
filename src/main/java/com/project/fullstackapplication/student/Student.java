@@ -1,4 +1,4 @@
-package com.project.fullstackapplication.model;
+package com.project.fullstackapplication.student;
 
 import java.util.UUID;
 
