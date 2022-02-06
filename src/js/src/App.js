@@ -2,30 +2,44 @@ import Container from './Container';
 import './App.css';
 import { getAllStudents} from './client';
 import { Component } from 'react/cjs/react.development';
-import { Table, Avatar } from 'antd';
+import { Table, Avatar, Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
+const getIndicatorIcon = () => <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 class App extends Component {
 
   state = {
-    students: []
+    students: [],
+    isFetching: false
   }
 
 componentDidMount () {
   this.fetchStudents();
 }
 
-  fetchStudents = () => {    
+  fetchStudents = () => {
+    this.setState({isFetching: true});
     getAllStudents().then(res => res.json()
     .then(students => { 
       console.log(students);
       this.setState({
-        students
+        students,
+        isFetching: false
       });
     }));}
 
   render() {
 
-    const { students} = this.state;
+    const { students, isFetching } = this.state;
+
+    if (isFetching) {
+      return (
+      <Container>
+        <Spin indicator={getIndicatorIcon()}/>
+      </Container>
+      );
+    }
 
     if (students && students.length) {
 
