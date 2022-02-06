@@ -1,3 +1,4 @@
+import Container from './Container';
 import './App.css';
 import { getAllStudents} from './client';
 import { Component } from 'react/cjs/react.development';
@@ -55,7 +56,11 @@ componentDidMount () {
       }
     ];
 
-    return (<Table dataSource={students} columns={coloumns} rowKey='studentId' />);
+    return (
+      <Container>
+    <Table dataSource={students} columns={coloumns} pagination={false} rowKey='studentId' />
+    </Container>
+    );
 
     }
 
