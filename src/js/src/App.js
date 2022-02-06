@@ -2,7 +2,7 @@ import Container from './Container';
 import './App.css';
 import { getAllStudents} from './client';
 import { Component } from 'react/cjs/react.development';
-import { Table } from 'antd';
+import { Table, Avatar } from 'antd';
 
 class App extends Component {
 
@@ -29,7 +29,17 @@ componentDidMount () {
 
     if (students && students.length) {
 
-      const coloumns = [{
+      const coloumns = [
+      {
+        title: '',
+        key: 'avatar',
+        render: (text, student) => (
+          <Avatar size='large'>
+            {`${student.firstName.charAt(0).toUpperCase()}${student.lastName.charAt(0).toUpperCase()}`}
+          </Avatar>
+        )
+      },
+      {
         title: 'Student ID',
         dataIndex: 'studentId',
         key: 'studentId'
