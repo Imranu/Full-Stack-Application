@@ -1,6 +1,7 @@
 import './App.css';
 import { getAllStudents} from './client';
 import { Component } from 'react/cjs/react.development';
+import { Table } from 'antd';
 
 class App extends Component {
 
@@ -27,17 +28,35 @@ componentDidMount () {
 
     if (students && students.length) {
 
-      return students.map((student, index) => {
-        return(
-          <div key={index}>
-            <h2>{student.studentId}</h2>
-            <p>{student.firstName}</p>
-            <p>{student.lastName}</p>
-            <p>{student.gender}</p>
-            <p>{student.email}</p>
-          </div>
-        )
-      })
+      const coloumns = [{
+        title: 'Student ID',
+        dataIndex: 'studentId',
+        key: 'studentId'
+      },
+      {
+        title: 'First Name',
+        dataIndex: 'firstName',
+        key: 'firstName'
+      },
+      {
+        title: 'Last Name',
+        dataIndex: 'lastName',
+        key: 'lastName'
+      },
+      {
+        title: 'Email',
+        dataIndex: 'email',
+        key: 'email'
+      },
+      {
+        title: 'Gender',
+        dataIndex: 'gender',
+        key: 'gender'
+      }
+    ];
+
+    return (<Table dataSource={students} columns={coloumns} rowKey='studentId' />);
+
     }
 
     return <h1>No Students found</h1>
