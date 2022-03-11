@@ -1,6 +1,6 @@
 import Container from './Container';
 import './App.css';
-import { getAllStudents} from './client';
+import { getAllStudents} from './Client';
 import { Component } from 'react/cjs/react.development';
 import { Table, Avatar, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
